@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PracticakTask</string>
+    <string name="name">Name</string>
+    <string name="desciption">Description</string>
+    <string name="Datetime">Date</string>
+    <string name="submit">Add Reminder</string>
+    <string name="reminderlit">Reminder</string>
+    <string name="pleaseenterName">Please enter Name</string>
+    <string name="pleaseenterDesciption">Please enter Description</string>
+    <string name="pleaseenterDate">Please select Date</string>
+    <string name="pleaseenterTime">Please select Time</string>
+    <string name="Time">Time</string>
+    <string name="addReminderDetails">Add Reminder</string>
+</resources>
