@@ -31,15 +31,10 @@ class AlarmReceiver: WakefulBroadcastReceiver() {
         val reminder: ReminderModel? = prefs?.getReminderModel()
         var mTitle: String = ""
         reminder?.list?.forEach {
-            if (it.name.equals(mReceivedID)){
+            if (it.name == mReceivedID){
                 mTitle = it.name
             }
         }
-
-
-        // Create intent to open ReminderEditActivity on notification click
-
-        // Create intent to open ReminderEditActivity on notification click
         val editIntent = Intent(context, MainActivity::class.java)
         editIntent.putExtra("EXTRA_REMINDER_ID", mReceivedID.toString())
         val mClick = PendingIntent.getActivity(

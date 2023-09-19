@@ -109,7 +109,14 @@ object Utils {
                         }
                     }
                 }
-                txtTime.setText(formattedTime)
+                var time = ""
+                time = if (minute < 10) {
+                    "${hourOfDay}:0${minute}"
+                } else {
+                    "${hourOfDay}:${minute} "
+                }
+
+                txtTime.setText(time)
             },
             // default hour when the time picker
             // dialog is opened

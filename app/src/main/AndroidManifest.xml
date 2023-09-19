@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".helper.AlarmReceiver"/>
+        <receiver android:name=".helper.AlarmReceiver"
+            android:enabled="true"/>
 
         <receiver android:name=".helper.BootReceiver"
             android:exported="true">

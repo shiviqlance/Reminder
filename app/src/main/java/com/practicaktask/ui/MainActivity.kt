@@ -1,14 +1,18 @@
 package com.practicaktask.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.practicaktask.R
 import com.practicaktask.adapter.ReminderAdapter
-import com.practicaktask.model.ReminderDetails
 import com.practicaktask.databinding.ActivityMainBinding
 import com.practicaktask.helper.Prefs
+import com.practicaktask.model.ReminderDetails
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,9 +70,33 @@ class MainActivity : AppCompatActivity() {
 
     private fun getData() {
         if (pref?.getReminderModel()?.list != null) {
-            list.clear()
-            list.addAll(pref?.getReminderModel()?.list!!)
-            reminderAdapter?.updateAll(list)
+
+
+
+
+
+            val mainHandler = Handler(Looper.getMainLooper())
+
+            mainHandler.post(object : Runnable {
+                override fun run() {
+                    list.clear()
+                    pref?.getReminderModel()?.list?.forEach {
+                        val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
+                        val strDate: Date = sdf.parse(it.date+" "+it.time)
+                        if (System.currentTimeMillis() < strDate.time) {
+                            list.add(it)
+                        }
+                    }
+                    reminderAdapter?.updateAll(list)
+
+
+                    mainHandler.postDelayed(this, 1000)
+                }
+            })
+
+
+           //
+
         }
 
     }
