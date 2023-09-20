@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         System.out.println("data print $list")
 
-        reminderAdapter?.updateAll(list)
+       // reminderAdapter?.updateAll(list)
     }
 
     private fun initListner() {
@@ -71,10 +71,6 @@ class MainActivity : AppCompatActivity() {
     private fun getData() {
         if (pref?.getReminderModel()?.list != null) {
 
-
-
-
-
             val mainHandler = Handler(Looper.getMainLooper())
 
             mainHandler.post(object : Runnable {
@@ -87,9 +83,12 @@ class MainActivity : AppCompatActivity() {
                             list.add(it)
                         }
                     }
-                    reminderAdapter?.updateAll(list)
 
-
+                    if (list.size == 0){
+                        reminderAdapter?.clear()
+                    }else {
+                        reminderAdapter?.updateAll(list)
+                    }
                     mainHandler.postDelayed(this, 1000)
                 }
             })
